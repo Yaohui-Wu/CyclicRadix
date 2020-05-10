@@ -1,6 +1,6 @@
 // Usage (encryption): CyclicBase -C/c plaintext.file ciphertext.file password
 // Usage (decryption): CyclicBase -P/p ciphertext.file plaintext.file password
-// Compiled on MacOS, Linux and *BSD.
+// Compiled on MacOS, Linux and *BSD in X86_64 platform.
 // Talk is SO EASY, show you my GOD.
 // Simple is beautiful.
 
