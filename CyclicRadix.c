@@ -58,7 +58,7 @@ unsigned char aucBase9Coding[256][3] = {
     '3', '7', '2', '4', '7', '2', '5', '7', '2', '6', '7', '2', '7', '7', '2', '8', '7', '2', '0', '8', '2', '1', '8', '2', '2', '8', '2', '3', '8', '2', '4', '8', '2', '5', '8', '2', '6', '8', '2', '7', '8', '2', '8', '8', '2', '0', '0', '3', '1', '0', '3', '2', '0', '3', '3', '0', '3',
     '4', '0', '3', '5', '0', '3', '6', '0', '3', '7', '0', '3', '8', '0', '3', '0', '1', '3', '1', '1', '3', '2', '1', '3', '3', '1', '3'};
 
-// generate random number of "JunTai" distribution
+// generate random number of "JunTai"(like Shuffle) distribution
 void JunTai(unsigned char *pucPassword, unsigned long ulPasswordLength)
 {
 // key table convert 8 * 32 = 256 bytes of data at a time in order to generate the random number of "JunTai" distribution
@@ -104,7 +104,7 @@ void Encrypt(char *argv[])
     unsigned char *pucPlaintext = (unsigned char*)malloc(ulPlaintextLength), *pucCiphertext = (unsigned char*)malloc(ulCiphertextLength);
 
 // open the plaintext file descriptor
-    int iPlaintextOrCiphertextFD = open(argv[0], O_RDONLY, S_IRUSR | S_IWUSR);
+    int iPlaintextOrCiphertextFD = open(argv[0], O_RDONLY, S_IREAD | S_IWRITE);
 
 // read data from the plaintext file
     read(iPlaintextOrCiphertextFD, pucPlaintext, ulPlaintextLength);
@@ -140,7 +140,7 @@ void Encrypt(char *argv[])
         changePassword((unsigned char*)argv[2], ulPasswordLength);
     }
 // open the ciphertext file descriptor
-    iPlaintextOrCiphertextFD = open(argv[1], O_CREAT | O_WRONLY, S_IREAD | S_IWRITE);
+    iPlaintextOrCiphertextFD = open(argv[1], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
 
 // write data to the ciphertext file
     write(iPlaintextOrCiphertextFD, pucCiphertext, ulCiphertextLength);
